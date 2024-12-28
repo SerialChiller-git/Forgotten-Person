@@ -3,25 +3,21 @@
 
 #include<SFML/Graphics.hpp>
 #include<cstdint> // for uint8_t
-
-
-
+#include "guiManager.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode({600, 800}), "ImGui + SFML = <3");
+    sf::RenderWindow window(sf::VideoMode({512, 512}), "ImGui + SFML = <3");
     window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
 
-    std::vector<sf::Shape*> kek;
-    
-    sf::CircleShape* circle = new sf::CircleShape(50.0f);
-    circle->setFillColor(sf::Color(0,255,0));
-    kek.push_back(circle);
-    delete circle;
     //======== codes for background colour ==============
 
     float color[3] = {0.0f, 0.0f, 0.0f};
     sf::Color bgcolor;
+
+    //============== objects ==========================
+
+    guiManager gui;
 
 
     //========= main loop ==============================
@@ -37,18 +33,22 @@ int main() {
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
+       
 
-        ImGui::Begin("Hello, world!");
+        ImGui::Begin("Controls");
 
         if(ImGui::ColorEdit3("Backgorund color", color)){
             bgcolor.r = static_cast<std::uint8_t>(color[0] * 255.0f);
             bgcolor.g = static_cast<std::uint8_t>(color[1] * 255.0f);
             bgcolor.b = static_cast<std::uint8_t>(color[2] * 255.0f);
         }
+        ImGui::SliderInt("grid X", &gui.x, 1, 100);
+        ImGui::SliderInt("grid Y", &gui.y, 1, 100);
 
         ImGui::End();
 
         window.clear(bgcolor);
+        gui.displayGrids(window);
         ImGui::SFML::Render(window);
         window.display();
     }
