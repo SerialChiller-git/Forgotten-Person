@@ -18,6 +18,7 @@ int main() {
     sf::Texture defaultTexture(sf::Vector2u{200,200});
     sf::Sprite sprite(defaultTexture);
     bool isLoaded = false;
+    bool isDragging = false;
     //============== objects ==========================
 
     guiManager gui;
@@ -32,6 +33,25 @@ int main() {
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
+
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                if(sprite.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))){
+                    isDragging = true;
+                }
+            }
+            else{
+                isDragging = false;
+            }
+
+            if(event->is<sf::Event::MouseMoved>()){
+                if(isDragging){
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    sf::Vector2f spriteSize = static_cast<sf::Vector2f>(sprite.getTexture().getSize());
+                    sprite.setPosition(static_cast<sf::Vector2f>(mousePos) - spriteSize/4.0f);
+                }
+            }
+
         }
 
         ImGui::SFML::Update(window, deltaClock.restart());
@@ -57,8 +77,6 @@ int main() {
         window.clear(bgcolor);   // Set everything that I want to see below this except the ImGui
         
         if(isLoaded){
-            sprite.setPosition({10.0f, 10.0f});
-            std::cout << "LOADED";
             window.draw(sprite);
         }
 
