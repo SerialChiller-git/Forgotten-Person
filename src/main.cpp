@@ -3,6 +3,7 @@
 #include<iostream>
 #include "gameTile.h"
 #include "Player.h"
+#include "calculations.h"
 
 sf::Texture playerTexture;
 
@@ -52,7 +53,6 @@ int main()
     while (window.isOpen())
     {   
         deltaTime = deltaClock.restart();
-        float moveDistance = player.speed * deltaTime.asSeconds();
         sf::Vector2f movement = {0.0f, 0.0f};
         while (const std::optional event = window.pollEvent())
         {
@@ -73,25 +73,29 @@ int main()
         }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)){
                     player.setFrame(3, 64, 64);
-                    movement.x -= moveDistance;
+                    movement.x -= 1;
                     
                     }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)){
                     player.setFrame(2, 64, 64);
-                    movement.x += moveDistance;
+                    movement.x += 1;
                     
                     }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
                     player.setFrame(0, 64, 64);
-                    movement.y -= moveDistance;
+                    movement.y -= 1;
                     
                     }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
                     player.setFrame(1, 64, 64);
-                    movement.y += moveDistance;
+                    movement.y += 1;
                     
                  }
         std::cout << movement.x << " " << movement.y << "\n";
+        movement = normalize(movement);
+        movement.x*= player.speed*deltaTime.asSeconds();
+        movement.y*= player.speed*deltaTime.asSeconds();
+
         player.move(movement);
         
 
