@@ -1,5 +1,6 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
+#include<iostream>
 
 #include<SFML/Graphics.hpp>
 #include<cstdint> // for uint8_t
@@ -48,7 +49,7 @@ int main() {
                 if(isDragging){
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     sf::Vector2f spriteSize = static_cast<sf::Vector2f>(sprite.getTexture().getSize());
-                    sprite.setPosition(static_cast<sf::Vector2f>(mousePos) - spriteSize/4.0f);
+                    sprite.setPosition(static_cast<sf::Vector2f>(mousePos));
                 }
             }
 

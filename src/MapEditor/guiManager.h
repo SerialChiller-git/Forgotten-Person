@@ -7,10 +7,14 @@
 class guiManager{
     public:
 
+        static std::vector<sf::Sprite> setSprites; // @todo: make some sort of vertexArray to load saved sprites every frame
         int x = 32;
         int y = 32;
         unsigned int win_x = 512;
         unsigned int win_y = 512;
+        int tile_x = 32;
+        int tile_y = 32;
+        int spriteIndex = 0;
 
         char path[256];
         guiManager(){
@@ -20,10 +24,11 @@ class guiManager{
         void spriteWindow(sf::RenderWindow &window, sf::Sprite &sprite, bool &isLoaded, sf::Texture &texture){
             ImGui::Begin("Sprites");
                 ImGui::InputText("Path to Sprite" , path ,256);
-                
+                sprite.setTextureRect(sf::IntRect({spriteIndex*tile_x, 0}, {tile_x, tile_y})); // @todo: fix the y index for 2D sprites
                 if(ImGui::Button("Load")){
                     if(texture.loadFromFile(path)){
                         sprite.setTexture(texture);
+                        
                         isLoaded = true;
                     }
                     else{
@@ -31,6 +36,11 @@ class guiManager{
                         isLoaded = false;
                     }
                 }
+
+                ImGui::InputInt("tile size", &tile_x); // Gui and logic for changing the tile size
+                tile_y = tile_x;
+                ImGui::InputInt("index", &spriteIndex);
+
             ImGui::End();
         }
 
