@@ -4,6 +4,13 @@
 #include<SFML/Graphics.hpp>
 #include<iostream>
 
+struct spriteData
+{
+    /* data */
+};
+
+
+
 class guiManager{
     public:
 
@@ -15,6 +22,7 @@ class guiManager{
         int tile_x = 32;
         int tile_y = 32;
         int spriteIndex = 0;
+        
 
         char path[256];
         guiManager(){
@@ -42,6 +50,11 @@ class guiManager{
                 ImGui::InputInt("index", &spriteIndex);
 
             ImGui::End();
+
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
+                spriteIndex++;
+                std::cout << "works \n";
+            }
         }
 
         void displayGrids(sf::RenderWindow &window){

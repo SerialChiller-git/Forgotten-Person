@@ -11,6 +11,7 @@ class Player : public sf::Drawable, public sf::Transformable{
         int spriteHeight;
         sf::Sprite sprite;
         int speed;
+        bool alive = true;
         Player(): sprite(texture){
             speed = 200;
             health = 100;
@@ -43,7 +44,9 @@ class Player : public sf::Drawable, public sf::Transformable{
     private:
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override{
             states.transform *= getTransform();
-            target.draw(sprite, states);
+            if(alive){
+                target.draw(sprite, states);
+            }
         }
 
 };

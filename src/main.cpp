@@ -1,9 +1,12 @@
 #include<imgui.h>
 #include <SFML/Graphics.hpp>
 #include<iostream>
+#include<thread>
+#include <mutex>
 #include "gameTile.h"
 #include "Player.h"
 #include "calculations.h"
+
 
 sf::Texture playerTexture;
 
@@ -41,15 +44,24 @@ int main()
         std::cerr << "Texture not loaded properly \n";
     }
 
+    Player player2;
+    if(!player2.loadTexture("assets/player.png")){
+        std::cerr << "Texture not loaded properly \n";
+    }
+
     map.setScale({2, 1});
 
     player.setFrame(1, 64, 64);
+    player2.setFrame(1, 64, 64);
+
+    player2.setPosition({90, 90});
     
     
 
     
     sf::Clock deltaClock;
     sf::Time deltaTime;
+    std::mutex windowMutex;
     while (window.isOpen())
     {   
         deltaTime = deltaClock.restart();
@@ -65,7 +77,9 @@ int main()
                 case sf::Keyboard::Scancode::Escape:
                     window.close();
                     break;
-                
+                case sf::Keyboard::Scancode::R:
+                    player2.alive = true;
+
                 default:
                     break;
                 }
@@ -91,17 +105,49 @@ int main()
                     movement.y += 1;
                     
                  }
-        std::cout << movement.x << " " << movement.y << "\n";
         movement = normalize(movement);
         movement.x*= player.speed*deltaTime.asSeconds();
         movement.y*= player.speed*deltaTime.asSeconds();
 
-        player.move(movement);
+        sf::Vector2f movement2 = {0.0f, 0.0f};
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)){
+                    player2.setFrame(3, 64, 64);
+                    movement2.x -= 1;
+                    
+                    }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
+                    player2.setFrame(2, 64, 64);
+                    movement2.x += 1;
+                    
+                    }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)){
+                    player2.setFrame(0, 64, 64);
+                    movement2.y -= 1;
+                    
+                    }
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)){
+                    player2.setFrame(1, 64, 64);
+                    movement2.y += 1;
+                    
+                 }
+        std::cout << movement2.x << " " << movement2.y << "\n";
+        movement2 = normalize(movement2);
+        movement2.x*= player2.speed*deltaTime.asSeconds();
+        movement2.y*= player2.speed*deltaTime.asSeconds();
+        std::cout << player2.alive << "\n";
+        if(checkCollision(player, player2)){
+            player2.alive = false;
+        }
         
+
+        player.move(movement);
+        player2.move(movement2);
 
         window.clear(sf::Color::Black);
         window.draw(map);
         window.draw(player);
+        window.draw(player2);
         window.display();
     }
 }
