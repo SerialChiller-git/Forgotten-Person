@@ -1,5 +1,6 @@
 #include<imgui.h>
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include<iostream>
 #include<thread>
 #include <mutex>
@@ -10,9 +11,12 @@
 
 sf::Texture playerTexture;
 
+const int WINDOW_X = 1024;
+const int WINDOW_Y = 512;
+
 int main()
 {
-    auto window = sf::RenderWindow(sf::VideoMode({1024, 512}), "Forgotten Person");
+    auto window = sf::RenderWindow(sf::VideoMode({WINDOW_X, WINDOW_Y}), "Forgotten Person");
     window.setFramerateLimit(75);
     
   constexpr std::array level = {
@@ -54,14 +58,15 @@ int main()
     player.setFrame(1, 64, 64);
     player2.setFrame(1, 64, 64);
 
-    player2.setPosition({90, 90});
+    player2.setPosition({900, 400});
     
     
 
     
     sf::Clock deltaClock;
     sf::Time deltaTime;
-    std::mutex windowMutex;
+    std::mutex windowMutex; 
+
     while (window.isOpen())
     {   
         deltaTime = deltaClock.restart();
@@ -79,6 +84,8 @@ int main()
                     break;
                 case sf::Keyboard::Scancode::R:
                     player2.alive = true;
+                    player2.setPosition({900, 400});
+                    player.setPosition({0, 0});
 
                 default:
                     break;
@@ -131,11 +138,9 @@ int main()
                     movement2.y += 1;
                     
                  }
-        std::cout << movement2.x << " " << movement2.y << "\n";
         movement2 = normalize(movement2);
         movement2.x*= player2.speed*deltaTime.asSeconds();
         movement2.y*= player2.speed*deltaTime.asSeconds();
-        std::cout << player2.alive << "\n";
         if(checkCollision(player, player2)){
             player2.alive = false;
         }
@@ -143,6 +148,37 @@ int main()
 
         player.move(movement);
         player2.move(movement2);
+
+        sf::Vector2f playerPos = player.getPosition();
+        sf::Vector2f player2Pos = player2.getPosition();
+
+        if(playerPos.x < 0){
+            player.setPosition({0, playerPos.y});
+        }
+        if(playerPos.x > WINDOW_X - 64){
+            player.setPosition({WINDOW_X - 64, playerPos.y});
+        }
+        if (playerPos.y < 0){
+            player.setPosition({playerPos.x, 0});
+        }
+        if(playerPos.y > WINDOW_Y - 64){
+            player.setPosition({playerPos.x, WINDOW_Y - 64});
+        }
+        
+        if(player2Pos.x < 0){
+            player2.setPosition({0, player2Pos.y});
+        }
+        if(player2Pos.x > WINDOW_X - 64){
+            player2.setPosition({WINDOW_X - 64, player2Pos.y});
+        }
+        if (player2Pos.y < 0){
+            player2.setPosition({player2Pos.x, 0});
+        }
+        if(player2Pos.y > WINDOW_Y - 64){
+            player2.setPosition({player2Pos.x, WINDOW_Y - 64});
+        }
+        
+        
 
         window.clear(sf::Color::Black);
         window.draw(map);

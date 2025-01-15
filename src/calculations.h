@@ -26,3 +26,4 @@ bool checkCollision(Player& player, Player& player2){
         }
     return false;
 }
+
