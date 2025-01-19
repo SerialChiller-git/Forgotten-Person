@@ -38,6 +38,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src/MapEditor)
 # Collect source files
 set(SOURCES 
     src/gameTile.cpp
+    src/calculations.cpp
 )
 
 # Create executable
@@ -45,7 +46,7 @@ add_executable(Forgotten_Person src/main.cpp ${SOURCES} )
 add_executable(Editor src/MapEditor/editor.cpp)
 
 # Link libraries
-target_link_libraries(Forgotten_Person PRIVATE SFML::Graphics ImGui-SFML::ImGui-SFML)
+target_link_libraries(Forgotten_Person PRIVATE SFML::Graphics SFML::Audio ImGui-SFML::ImGui-SFML)
 target_link_libraries(Editor PRIVATE SFML::Graphics ImGui-SFML::ImGui-SFML)
 
 # Copy assets after build

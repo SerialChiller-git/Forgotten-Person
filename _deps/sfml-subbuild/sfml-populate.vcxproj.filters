@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\b81cb03db24ef3e461f8c17d3a9ed39b\sfml-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\1d3e9b26650a61c5d02496e23383bb7e\sfml-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\1ee6b9236b352a94c437b80cd039d31d\sfml-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\sfml-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E6365BBB-DC76-3C7E-A19D-B1873FBF7BF0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

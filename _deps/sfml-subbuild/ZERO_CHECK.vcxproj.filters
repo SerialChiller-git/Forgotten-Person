@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\C++\Games\2D rpg\_deps\sfml-subbuild\CMakeFiles\1ee6b9236b352a94c437b80cd039d31d\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E6365BBB-DC76-3C7E-A19D-B1873FBF7BF0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

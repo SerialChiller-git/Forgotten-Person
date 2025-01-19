@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/sfml-populate"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/1ee6b9236b352a94c437b80cd039d31d/sfml-populate.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/1d3e9b26650a61c5d02496e23383bb7e/sfml-populate-complete.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-build.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-configure.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-download.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-install.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-mkdir.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-patch.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-test.rule"
+		},
+		{
+			"file" : "E:/C++/Games/2D rpg/_deps/sfml-subbuild/CMakeFiles/b81cb03db24ef3e461f8c17d3a9ed39b/sfml-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"sfml-populate"
+		],
+		"name" : "sfml-populate"
+	}
+}

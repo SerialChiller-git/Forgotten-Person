@@ -1,6 +1,7 @@
 #include<imgui.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include<iostream>
 #include<thread>
 #include <mutex>
@@ -49,7 +50,7 @@ int main()
     }
 
     Player player2;
-    if(!player2.loadTexture("assets/player.png")){
+    if(!player2.loadTexture("assets/player2.png")){
         std::cerr << "Texture not loaded properly \n";
     }
 
@@ -60,13 +61,20 @@ int main()
 
     player2.setPosition({900, 400});
     
+    player.notChaser = true;
+    player2.notChaser = false;
+    player.setTextColor();
+    player2.setTextColor();
     
 
-    
+    bool oppositvePlayer = false;
     sf::Clock deltaClock;
     sf::Time deltaTime;
-    std::mutex windowMutex; 
-
+    sf::SoundBuffer buffer("assets/Pixel Pursuit.mp3");
+    sf::Sound sound(buffer);
+    sound.play();
+    sound.setLooping(true);
+    
     while (window.isOpen())
     {   
         deltaTime = deltaClock.restart();
@@ -84,8 +92,18 @@ int main()
                     break;
                 case sf::Keyboard::Scancode::R:
                     player2.alive = true;
+                    player.alive = true;
                     player2.setPosition({900, 400});
                     player.setPosition({0, 0});
+                    oppositvePlayer = !oppositvePlayer;
+                    player.notChaser = !player.notChaser;
+                    player2.notChaser = !player2.notChaser;
+                    player.showText = true;
+                    player2.showText = true;
+                    player.setTextColor();
+                    player2.setTextColor();
+                    
+                    break;
 
                 default:
                     break;
@@ -96,22 +114,21 @@ int main()
                     player.setFrame(3, 64, 64);
                     movement.x -= 1;
                     
-                    }
+                }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)){
                     player.setFrame(2, 64, 64);
                     movement.x += 1;
-                    
-                    }
+                }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)){
                     player.setFrame(0, 64, 64);
                     movement.y -= 1;
                     
-                    }
+                }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)){
                     player.setFrame(1, 64, 64);
                     movement.y += 1;
                     
-                 }
+                }
         movement = normalize(movement);
         movement.x*= player.speed*deltaTime.asSeconds();
         movement.y*= player.speed*deltaTime.asSeconds();
@@ -131,23 +148,30 @@ int main()
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)){
                     player2.setFrame(0, 64, 64);
                     movement2.y -= 1;
-                    
-                    }
+                }
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)){
                     player2.setFrame(1, 64, 64);
-                    movement2.y += 1;
-                    
+                    movement2.y += 1;    
                  }
         movement2 = normalize(movement2);
         movement2.x*= player2.speed*deltaTime.asSeconds();
         movement2.y*= player2.speed*deltaTime.asSeconds();
         if(checkCollision(player, player2)){
-            player2.alive = false;
+            if(oppositvePlayer){
+                player2.alive = false;
+            }
+            else{
+                player.alive = false;
+            }
         }
         
-
+        if(movement2 != sf::Vector2f({0.0f, 0.0f}) || movement != sf::Vector2f({0.0f, 0.0f})){
+            player2.showText = false;
+            player.showText = false;
+        }
         player.move(movement);
         player2.move(movement2);
+        
 
         sf::Vector2f playerPos = player.getPosition();
         sf::Vector2f player2Pos = player2.getPosition();
